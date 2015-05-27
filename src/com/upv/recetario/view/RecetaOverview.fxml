@@ -15,7 +15,7 @@
                      <children>
                         <Button layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="Nuevo" />
                         <Button layoutX="79.0" layoutY="6.0" mnemonicParsing="false" text="Modificar" />
-                        <Button layoutX="160.0" layoutY="6.0" mnemonicParsing="false" text="Eliminar" />
+                        <Button layoutX="160.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleDeleteReceta" text="Eliminar" />
                      </children>
                   </HBox>
                </children>

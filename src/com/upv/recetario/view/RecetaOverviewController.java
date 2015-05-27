@@ -1,12 +1,14 @@
 package com.upv.recetario.view;
 
-import com.upv.recetario.MainApp;
-import com.upv.recetario.model.Receta;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+
+import org.controlsfx.dialog.Dialogs;
+
+import com.upv.recetario.MainApp;
+import com.upv.recetario.model.Receta;
 
 
 public class RecetaOverviewController {
@@ -54,6 +56,21 @@ public class RecetaOverviewController {
 
         // Add observable list data to the table
         recetaTable.setItems(mainApp.getRecetaData());
+    }
+    
+    @FXML
+    private void handleDeleteReceta() {
+    	 int selectedIndex = recetaTable.getSelectionModel().getSelectedIndex();
+    	    if (selectedIndex >= 0) {
+    	    	recetaTable.getItems().remove(selectedIndex);
+    	    } else {
+    	        // Nothing selected.
+    	        Dialogs.create()
+    	            .title("Advertencia")
+    	            .masthead("No se ha seleccionado ninguna receta")
+    	            .message("Por favor, seleccione una receta de la tabla")
+    	            .showWarning();
+    	    }
     }
     
     
