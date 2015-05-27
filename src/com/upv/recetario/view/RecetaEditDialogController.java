@@ -8,19 +8,16 @@ import org.controlsfx.dialog.Dialogs;
 
 import com.upv.recetario.model.Receta;
 
-
-/**
- * Dialog to edit details of a person.
- * 
- * @author Marco Jakob
- */
 public class RecetaEditDialogController {
 
     @FXML
     private TextField nombrePlatoField;
     @FXML
     private TextField categoriaField;
-
+    @FXML
+    private TextField dificultadField;
+    @FXML
+    private TextField comensalesField;
 
     private Stage dialogStage;
     private Receta receta;
@@ -53,7 +50,8 @@ public class RecetaEditDialogController {
 
         nombrePlatoField.setText(receta.getNombrePlato());
         categoriaField.setText(receta.getCategoria());
-        
+        dificultadField.setText(receta.getDificultad());
+        comensalesField.setText(String.valueOf(receta.getComensales()));
     }
 
     /**
@@ -73,7 +71,8 @@ public class RecetaEditDialogController {
         if (isInputValid()) {
         	receta.setNombrePlato(nombrePlatoField.getText());
         	receta.setCategoria(categoriaField.getText());
-            
+        	receta.setDificultad(dificultadField.getText());
+        	receta.setComensales(Integer.valueOf(comensalesField.getText()));
             okClicked = true;
             dialogStage.close();
         }
