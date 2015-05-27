@@ -1,6 +1,7 @@
 package com.upv.recetario.model;
 
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -21,12 +22,27 @@ public class Receta {
 		this.nombrePlato = new SimpleStringProperty("");
 		this.categoria = new SimpleStringProperty("");
 		this.dificultad = new SimpleStringProperty("");
+		this.comensales = new SimpleIntegerProperty(0);
+		this.imagenPlato = new SimpleStringProperty("");
+		this.tiempoPreparacion = new SimpleIntegerProperty(0);
+		this.tiempoCoccion = new SimpleIntegerProperty(0);
+		this.ingredientes = new SimpleStringProperty("");
+		this.preparacion = new SimpleStringProperty("");
+		this.observaciones = new SimpleStringProperty("");		
 	}
+	
 	
 	public Receta(String nombre, String categoria, String dificultad){
 		this.nombrePlato = new SimpleStringProperty(nombre);
 		this.categoria = new SimpleStringProperty(categoria);
 		this.dificultad = new SimpleStringProperty(dificultad);
+		this.comensales = new SimpleIntegerProperty(0);
+		this.imagenPlato = new SimpleStringProperty("");
+		this.tiempoPreparacion = new SimpleIntegerProperty(0);
+		this.tiempoCoccion = new SimpleIntegerProperty(0);
+		this.ingredientes = new SimpleStringProperty("");
+		this.preparacion = new SimpleStringProperty("");
+		this.observaciones = new SimpleStringProperty("");	
 	}
     public String getNombrePlato() {
         return nombrePlato.get();
