@@ -74,4 +74,47 @@ public class RecetaOverviewController {
     }
     
     
+    @FXML
+    private void handleNewReceta() {
+    	Receta tempReceta = new Receta();
+        boolean okClicked = mainApp.showRecetaEditDialog(tempReceta);
+        if (okClicked) {
+            mainApp.getRecetaData().add(tempReceta);
+        }
+    }
+    
+    @FXML
+    private void handleEditReceta() {
+    	Receta selectedPerson = recetaTable.getSelectionModel().getSelectedItem();
+        if (selectedPerson != null) {
+//            boolean okClicked = mainApp.showRecetaEditDialog(selectedPerson);
+        	mainApp.showRecetaEditDialog(selectedPerson);
+//            if (okClicked) {
+//                showRecetaDetails(selectedPerson);
+//            }
+
+        } else {
+            // Nothing selected.
+        	Dialogs.create()
+            .title("Advertencia")
+            .masthead("No se ha seleccionado ninguna receta")
+            .message("Por favor, seleccione una receta de la tabla")
+            .showWarning();
+        }
+    }
+    
+    
+    private void showRecetaDetails(Receta receta) {
+        if (receta != null) {
+            // Fill the labels with info from the person object.
+            nombrePlatoLabel.setText(receta.getNombrePlato());
+            categoriaLabel.setText(receta.getCategoria());
+
+        } else {
+            // Person is null, remove all the text.
+        	nombrePlatoLabel.setText("");
+            categoriaLabel.setText("");
+            
+        }
+    }
 }

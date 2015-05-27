@@ -13,8 +13,8 @@
                <children>
                   <HBox layoutX="14.0" layoutY="6.0" style="-fx-spacing: 10;">
                      <children>
-                        <Button layoutX="14.0" layoutY="6.0" mnemonicParsing="false" text="Nuevo" />
-                        <Button layoutX="79.0" layoutY="6.0" mnemonicParsing="false" text="Modificar" />
+                        <Button layoutX="14.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleNewReceta" text="Nuevo" />
+                        <Button layoutX="79.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleEditReceta" text="Modificar" />
                         <Button layoutX="160.0" layoutY="6.0" mnemonicParsing="false" onAction="#handleDeleteReceta" text="Eliminar" />
                      </children>
                   </HBox>

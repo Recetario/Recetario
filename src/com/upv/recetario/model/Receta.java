@@ -17,6 +17,12 @@ public class Receta {
 	private StringProperty preparacion;
 	private StringProperty observaciones;
 	
+	public Receta(){	
+		this.nombrePlato = new SimpleStringProperty("");
+		this.categoria = new SimpleStringProperty("");
+		this.dificultad = new SimpleStringProperty("");
+	}
+	
 	public Receta(String nombre, String categoria, String dificultad){
 		this.nombrePlato = new SimpleStringProperty(nombre);
 		this.categoria = new SimpleStringProperty(categoria);

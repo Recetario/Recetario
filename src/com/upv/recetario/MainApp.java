@@ -9,9 +9,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import com.upv.recetario.model.Receta;
+import com.upv.recetario.view.RecetaEditDialogController;
 import com.upv.recetario.view.RecetaOverviewController;
 
 public class MainApp extends Application {
@@ -92,5 +94,36 @@ public class MainApp extends Application {
     
     public ObservableList<Receta> getRecetaData() {
         return recetaData;
+    }
+    
+    
+    public boolean showRecetaEditDialog(Receta receta) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/RecetaEditDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Editar receta");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            RecetaEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setReceta(receta);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
