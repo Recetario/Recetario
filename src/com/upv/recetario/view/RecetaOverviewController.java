@@ -79,7 +79,7 @@ public class RecetaOverviewController {
     @FXML
     private void handleNewReceta() {
     	Receta tempReceta = new Receta();
-        boolean okClicked = mainApp.showRecetaEditDialog(tempReceta, "Nueva receta");
+        boolean okClicked = mainApp.showRecetaEditDialog(tempReceta, "Nueva receta", false);
         if (okClicked) {
             mainApp.getRecetaData().add(tempReceta);
         }
@@ -88,10 +88,10 @@ public class RecetaOverviewController {
     
     @FXML
     private void handleEditReceta() {
-    	Receta selectedPerson = recetaTable.getSelectionModel().getSelectedItem();
+    	Receta selectedReceta = recetaTable.getSelectionModel().getSelectedItem();
     	
-        if (selectedPerson != null) {
-        	mainApp.showRecetaEditDialog(selectedPerson, "Modificar receta");
+        if (selectedReceta != null) {
+        	mainApp.showRecetaEditDialog(selectedReceta, "Modificar receta", false);
         	
         } else {
         	Dialogs.create()
@@ -102,4 +102,21 @@ public class RecetaOverviewController {
         }
     }    
 
+    
+    @FXML
+    private void handleVerReceta() {
+    	Receta selectedReceta = recetaTable.getSelectionModel().getSelectedItem();
+    	
+        if (selectedReceta != null) {
+        	mainApp.showRecetaEditDialog(selectedReceta, "Ver receta", true);
+        	
+        } else {
+        	Dialogs.create()
+            .title("Advertencia")
+            .masthead("No se ha seleccionado ninguna receta")
+            .message("Por favor, seleccione una receta de la tabla")
+            .showWarning();
+        }
+    }    
+    
 }

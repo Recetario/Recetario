@@ -119,7 +119,7 @@ public class MainApp extends Application {
     }
     
     
-    public boolean showRecetaEditDialog(Receta receta, String windowTitle) {
+    public boolean showRecetaEditDialog(Receta receta, String windowTitle, boolean readOnly) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -137,7 +137,7 @@ public class MainApp extends Application {
             // Set the person into the controller.
             RecetaEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
-            controller.setReceta(receta);
+            controller.setReceta(receta, readOnly);
 
             // Show the dialog and wait until the user closes it
             dialogStage.showAndWait();

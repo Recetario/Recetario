@@ -52,13 +52,20 @@ public class RecetaEditDialogController {
     }
 
 
-    public void setReceta(Receta receta) {
+    public void setReceta(Receta receta, boolean readOnly) {
         this.receta = receta;
 
         nombrePlatoField.setText(receta.getNombrePlato());
-        comboCategoria.setValue(receta.getCategoria());
+        comboCategoria.setValue(receta.getCategoria());        
         comboDificultad.setValue(receta.getDificultad());
         comensalesField.setText(String.valueOf(receta.getComensales()));
+        
+        if(readOnly){
+        	nombrePlatoField.setDisable(true);
+        	comboCategoria.setDisable(true);
+        	comboDificultad.setDisable(true);
+        	comensalesField.setDisable(true);
+        }
     }
 
   
