@@ -6,6 +6,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import org.controlsfx.dialog.Dialogs;
@@ -44,6 +46,11 @@ public class RecetaEditDialogController {
     @FXML
     private TextArea observacionesField;
     
+    @FXML
+    private ImageView imageView;
+    
+    @FXML
+    private TextField imageField;
     
     ObservableList<String> itemsDificultad = FXCollections.observableArrayList("Alta", "Media", "Baja");
     ObservableList<String> itemsCategoria = FXCollections.observableArrayList("Principal", "Primero", "Segundo", "Postre");
@@ -62,6 +69,7 @@ public class RecetaEditDialogController {
     	comboDificultad.setItems(itemsDificultad);    	
     	comboCategoria.setItems(itemsCategoria);
     	comboValoracion.setItems(itemsValoracion);
+//    	imageView.setImage( new Image("http://www.cochesdeocasion.com/images/sin_imagen_grande.jpg"));        
     }
 
     /**
@@ -87,6 +95,16 @@ public class RecetaEditDialogController {
         ingredientesField.setText(receta.getIngredientes());
         formaPreparacionField.setText(receta.getPreparacion());
         observacionesField.setText(receta.getObservaciones());
+        imageField.setText(receta.getImagenPlato());
+        Image image1;
+        if(receta.getImagenPlato() != null && !receta.getImagenPlato().equals("")){
+        	image1 = new Image(receta.getImagenPlato());
+        } else {
+        	image1 = new Image("http://www.cochesdeocasion.com/images/sin_imagen_grande.jpg");        	
+        }
+        imageView.setImage(image1);
+        
+        
         
         if(readOnly){
         	nombrePlatoField.setDisable(true);
@@ -99,6 +117,7 @@ public class RecetaEditDialogController {
         	ingredientesField.setDisable(true);
             formaPreparacionField.setDisable(true);
             observacionesField.setDisable(true);
+            imageField.setDisable(true);
         }
     }
 
@@ -121,6 +140,7 @@ public class RecetaEditDialogController {
         	receta.setIngredientes(ingredientesField.getText());
         	receta.setPreparacion(formaPreparacionField.getText());
         	receta.setObservaciones(observacionesField.getText());
+        	receta.setImagenPlato(imageField.getText());
             okClicked = true;
             dialogStage.close();
         }
