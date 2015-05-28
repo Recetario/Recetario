@@ -134,6 +134,8 @@ public class MainApp extends Application {
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
+            dialogStage.getIcons().add(new Image("file:resources/images/icon_recetario_32.png"));
+            
             // Set the person into the controller.
             RecetaEditDialogController controller = loader.getController();
             controller.setDialogStage(dialogStage);
