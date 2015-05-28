@@ -17,33 +17,23 @@ public class Receta {
 	private StringProperty ingredientes;
 	private StringProperty preparacion;
 	private StringProperty observaciones;
+	private StringProperty valoracion;
 	
 	public Receta(){	
 		this.nombrePlato = new SimpleStringProperty("");
 		this.categoria = new SimpleStringProperty("Principal");
 		this.dificultad = new SimpleStringProperty("Media");
-		this.comensales = new SimpleIntegerProperty(0);
-		this.imagenPlato = new SimpleStringProperty("");
-		this.tiempoPreparacion = new SimpleIntegerProperty(0);
-		this.tiempoCoccion = new SimpleIntegerProperty(0);
-		this.ingredientes = new SimpleStringProperty("");
-		this.preparacion = new SimpleStringProperty("");
-		this.observaciones = new SimpleStringProperty("");		
-	}
-	
-	
-	public Receta(String nombre, String categoria, String dificultad){
-		this.nombrePlato = new SimpleStringProperty(nombre);
-		this.categoria = new SimpleStringProperty(categoria);
-		this.dificultad = new SimpleStringProperty(dificultad);
-		this.comensales = new SimpleIntegerProperty(0);
+		this.comensales = new SimpleIntegerProperty(1);
 		this.imagenPlato = new SimpleStringProperty("");
 		this.tiempoPreparacion = new SimpleIntegerProperty(0);
 		this.tiempoCoccion = new SimpleIntegerProperty(0);
 		this.ingredientes = new SimpleStringProperty("");
 		this.preparacion = new SimpleStringProperty("");
 		this.observaciones = new SimpleStringProperty("");	
+		this.valoracion = new SimpleStringProperty("1");
 	}
+	
+	
     public String getNombrePlato() {
         return nombrePlato.get();
     }
@@ -168,4 +158,16 @@ public class Receta {
     public StringProperty observacionesProperty() {
         return observaciones;
     }    
+    
+    public String getValoracion() {
+        return valoracion.get();
+    }
+
+    public void setValoracion(String valoracion) {
+        this.valoracion.set(valoracion);
+    }
+    
+    public StringProperty valoracionProperty() {
+        return valoracion;
+    }  
 }
