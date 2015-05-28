@@ -20,8 +20,8 @@ public class Receta {
 	
 	public Receta(){	
 		this.nombrePlato = new SimpleStringProperty("");
-		this.categoria = new SimpleStringProperty("");
-		this.dificultad = new SimpleStringProperty("");
+		this.categoria = new SimpleStringProperty("Principal");
+		this.dificultad = new SimpleStringProperty("Media");
 		this.comensales = new SimpleIntegerProperty(0);
 		this.imagenPlato = new SimpleStringProperty("");
 		this.tiempoPreparacion = new SimpleIntegerProperty(0);

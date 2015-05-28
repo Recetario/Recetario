@@ -49,28 +49,13 @@ public class MainApp extends Application {
         
         initRootLayout();
 
-        showPersonOverview();
+        showRecetaOverview();
     }
+    
 
     /**
      * Initializes the root layout.
-     */
-    /*public void initRootLayout() {
-        try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
-            rootLayout = (BorderPane) loader.load();
-
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-    
+     */    
     public void initRootLayout() {
         try {
             // Load root layout from fxml file.
@@ -88,6 +73,7 @@ public class MainApp extends Application {
             controller.setMainApp(this);
 
             primaryStage.show();
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -99,20 +85,15 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * Shows the person overview inside the root layout.
-     */
-    public void showPersonOverview() {
+    
+    public void showRecetaOverview() {
         try {
-            // Load person overview.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/RecetaOverview.fxml"));
             AnchorPane recetaOverview = (AnchorPane) loader.load();
 
-            // Set person overview into the center of root layout.
             rootLayout.setCenter(recetaOverview);
             
-            // Give the controller access to the main app.
             RecetaOverviewController controller = loader.getController();
             controller.setMainApp(this);
             
@@ -138,7 +119,7 @@ public class MainApp extends Application {
     }
     
     
-    public boolean showRecetaEditDialog(Receta receta) {
+    public boolean showRecetaEditDialog(Receta receta, String windowTitle) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -147,7 +128,7 @@ public class MainApp extends Application {
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Editar receta");
+            dialogStage.setTitle(windowTitle);
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);

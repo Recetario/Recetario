@@ -1,6 +1,9 @@
 package com.upv.recetario.view;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -12,13 +15,19 @@ public class RecetaEditDialogController {
 
     @FXML
     private TextField nombrePlatoField;
-    @FXML
-    private TextField categoriaField;
-    @FXML
-    private TextField dificultadField;
+
     @FXML
     private TextField comensalesField;
 
+    @FXML
+    private ComboBox<String> comboDificultad;
+    
+    @FXML
+    private ComboBox<String> comboCategoria;
+    
+    ObservableList<String> itemsDificultad = FXCollections.observableArrayList("Alta", "Media", "Baja");
+    ObservableList<String> itemsCategoria = FXCollections.observableArrayList("Entrante", "Principal", "Postre");
+    
     private Stage dialogStage;
     private Receta receta;
     private boolean okClicked = false;
@@ -29,6 +38,8 @@ public class RecetaEditDialogController {
      */
     @FXML
     private void initialize() {
+    	comboDificultad.setItems(itemsDificultad);    	
+    	comboCategoria.setItems(itemsCategoria);
     }
 
     /**
@@ -40,47 +51,35 @@ public class RecetaEditDialogController {
         this.dialogStage = dialogStage;
     }
 
-    /**
-     * Sets the person to be edited in the dialog.
-     * 
-     * @param person
-     */
+
     public void setReceta(Receta receta) {
         this.receta = receta;
 
         nombrePlatoField.setText(receta.getNombrePlato());
-        categoriaField.setText(receta.getCategoria());
-        dificultadField.setText(receta.getDificultad());
+        comboCategoria.setValue(receta.getCategoria());
+        comboDificultad.setValue(receta.getDificultad());
         comensalesField.setText(String.valueOf(receta.getComensales()));
     }
 
-    /**
-     * Returns true if the user clicked OK, false otherwise.
-     * 
-     * @return
-     */
+  
     public boolean isOkClicked() {
         return okClicked;
     }
 
-    /**
-     * Called when the user clicks ok.
-     */
+   
     @FXML
     private void handleOk() {
         if (isInputValid()) {
         	receta.setNombrePlato(nombrePlatoField.getText());
-        	receta.setCategoria(categoriaField.getText());
-        	receta.setDificultad(dificultadField.getText());
+        	receta.setDificultad(comboDificultad.getValue());
+        	receta.setCategoria(comboCategoria.getValue());
         	receta.setComensales(Integer.valueOf(comensalesField.getText()));
             okClicked = true;
             dialogStage.close();
         }
     }
 
-    /**
-     * Called when the user clicks cancel.
-     */
+    
     @FXML
     private void handleCancel() {
         dialogStage.close();
@@ -96,10 +95,7 @@ public class RecetaEditDialogController {
 
         if (nombrePlatoField.getText() == null || nombrePlatoField.getText().length() == 0) {
             errorMessage += "Debe rellenar el nombre del plato \n"; 
-        }
-        if (categoriaField.getText() == null || categoriaField.getText().length() == 0) {
-            errorMessage += "Debe rellenar la categoría\n"; 
-        }
+        }       
         
 
         if (errorMessage.length() == 0) {

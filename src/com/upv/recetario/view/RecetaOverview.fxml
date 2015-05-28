@@ -26,7 +26,7 @@
                     <columns>
                       <TableColumn fx:id="nombrePlatoColumn" prefWidth="75.0" text="Nombre" />
                       <TableColumn fx:id="categoriaColumn" prefWidth="75.0" text="Categoria" />
-                        <TableColumn prefWidth="75.0" text="Dificultad" />
+                        <TableColumn fx:id="dificultadColumn" prefWidth="75.0" text="Dificultad" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

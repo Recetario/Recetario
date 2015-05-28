@@ -18,7 +18,9 @@ public class RecetaOverviewController {
     private TableColumn<Receta, String> nombrePlatoColumn;
     @FXML
     private TableColumn<Receta, String> categoriaColumn;
-
+    @FXML
+    private TableColumn<Receta, String> dificultadColumn;
+    
     @FXML
     private Label nombrePlatoLabel;
     @FXML
@@ -41,9 +43,9 @@ public class RecetaOverviewController {
      */
     @FXML
     private void initialize() {
-        // Initialize the person table with the two columns.
     	nombrePlatoColumn.setCellValueFactory(cellData -> cellData.getValue().nombrePlatoProperty());
     	categoriaColumn.setCellValueFactory(cellData -> cellData.getValue().categoriaProperty());
+    	dificultadColumn.setCellValueFactory(cellData -> cellData.getValue().dificultadProperty());
     }
 
     /**
@@ -77,44 +79,27 @@ public class RecetaOverviewController {
     @FXML
     private void handleNewReceta() {
     	Receta tempReceta = new Receta();
-        boolean okClicked = mainApp.showRecetaEditDialog(tempReceta);
+        boolean okClicked = mainApp.showRecetaEditDialog(tempReceta, "Nueva receta");
         if (okClicked) {
             mainApp.getRecetaData().add(tempReceta);
         }
     }
     
+    
     @FXML
     private void handleEditReceta() {
     	Receta selectedPerson = recetaTable.getSelectionModel().getSelectedItem();
+    	
         if (selectedPerson != null) {
-//            boolean okClicked = mainApp.showRecetaEditDialog(selectedPerson);
-        	mainApp.showRecetaEditDialog(selectedPerson);
-//            if (okClicked) {
-//                showRecetaDetails(selectedPerson);
-//            }
-
+        	mainApp.showRecetaEditDialog(selectedPerson, "Modificar receta");
+        	
         } else {
-            // Nothing selected.
         	Dialogs.create()
             .title("Advertencia")
             .masthead("No se ha seleccionado ninguna receta")
             .message("Por favor, seleccione una receta de la tabla")
             .showWarning();
         }
-    }
-    
-    
-    private void showRecetaDetails(Receta receta) {
-        if (receta != null) {
-            // Fill the labels with info from the person object.
-            nombrePlatoLabel.setText(receta.getNombrePlato());
-            categoriaLabel.setText(receta.getCategoria());
+    }    
 
-        } else {
-            // Person is null, remove all the text.
-        	nombrePlatoLabel.setText("");
-            categoriaLabel.setText("");
-            
-        }
-    }
 }
